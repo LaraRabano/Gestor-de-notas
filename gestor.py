@@ -12,27 +12,24 @@ Entrada: [8, 4, 2, 9, 6, 7, 5, 0]
 Salida: [notable, suspenso, suspenso, sobresaliente, bien, notable, aprobado, suspenso]"""
 
 
-import json
+from tabulate import tabulate
 
 
 curso = []
 
 otra = "Y"
 
-alumno = {"ID": None,
-          "Nombre": None,
-          "Nota": None,
-          "Calificacion": None}
-
 
 while otra == "Y":
 
     list_notas = []
 
-    alumno = {"ID": int(input("Introduce el identificador del alumno: ")),
-              "Nombre": str(input("Introduce un alumno: ")),
-              "Nota": int(input("Introduce una nota: ")),
-              "Calificacion": list_notas}
+    alumno = {
+        "ID": int(input("Introduce el identificador del alumno: ")),
+        "Nombre": str(input("Introduce un alumno: ")),
+        "Nota": int(input("Introduce una nota: ")),
+        "Calificacion": list_notas
+    }
 
     if alumno.get("Nota") <= 4:
         list_notas.append("Suspenso")
@@ -57,14 +54,15 @@ while otra == "Y":
     while otra != "N" and otra != "Y":
         otra = input("Respuesta incorrecta. Introduce Y o N: ").upper()
 
-print(json.dumps(curso, indent=2))
+    print(tabulate(curso, headers="keys"))
 
 
-"""pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N ")
+"""print(tabulate([["F",24],["M",19]], showindex="always"))
+print(tabulate(table, headers, tablefmt="simple"))"""
+
+pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N ")
 
 while pregunta == "Y":
 
-    Planteamiento para buscar los datos que queremos modificar
-
     while pregunta != "N" and pregunta != "Y":
-        pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()"""
+        pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()

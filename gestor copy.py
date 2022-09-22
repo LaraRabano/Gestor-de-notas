@@ -40,7 +40,7 @@ class Curso:
 
             self.curso.append(self.alumno)
 
-             otra = input(
+            otra = input(
                 "¿Quieres introducir otra entrada en el registro? (Y/N): ").upper()
 
             while otra != "N" and otra != "Y":

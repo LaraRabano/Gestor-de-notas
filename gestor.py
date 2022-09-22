@@ -1,3 +1,4 @@
+
 """Soy un profe, y me llega una lista con las notas de mis alumnos de este curso.
 
 Quiero imprimir una lista con el equivalente de cada nota, estas siendo:
@@ -11,21 +12,44 @@ Entrada: [8, 4, 2, 9, 6, 7, 5, 0]
 Salida: [notable, suspenso, suspenso, sobresaliente, bien, notable, aprobado, suspenso]"""
 
 
-from tabulate import tabulate
+import json
 
 
-curso = [id_alumno := [], alumno := [], nota := [], calificación := []]
+curso = []
 
 otra = "Y"
+
+alumno = {"ID": None,
+          "Nombre": None,
+          "Nota": None,
+          "Calificacion": None}
 
 
 while otra == "Y":
 
-    id_alumno.append(int(input("Introduce el identificador del alumno: ")))
+    list_notas = []
 
-    alumno.append(str(input("Introduce un alumno: ")))
+    alumno = {"ID": int(input("Introduce el identificador del alumno: ")),
+              "Nombre": str(input("Introduce un alumno: ")),
+              "Nota": int(input("Introduce una nota: ")),
+              "Calificacion": list_notas}
 
-    nota.append(int(input("Introduce una nota: ")))
+    if alumno.get("Nota") <= 4:
+        list_notas.append("Suspenso")
+
+    elif alumno.get("Nota") == 5:
+        list_notas.append("Aprobado")
+
+    elif alumno.get("Nota") == 6:
+        list_notas.append("Bien")
+
+    elif alumno.get("Nota") == 7 or alumno.get("Nota") == 8:
+        list_notas.append("Notable")
+
+    elif alumno.get("Nota") == 9 or alumno.get("Nota") == 10:
+        list_notas.append("Sobresaliente")
+
+    curso.append(alumno)
 
     otra = input(
         "¿Quieres introducir otra entrada en el registro? (Y/N): ").upper()
@@ -33,34 +57,14 @@ while otra == "Y":
     while otra != "N" and otra != "Y":
         otra = input("Respuesta incorrecta. Introduce Y o N: ").upper()
 
-
-for i in nota:
-
-    if i <= 4:
-        calificación.append("Suspenso")
-
-    elif i == 5:
-        calificación.append("Aprobado")
-
-    elif i == 6:
-        calificación.append("Bien")
-
-    elif i == 7 or nota == 8:
-        calificación.append("Notable")
-
-    elif i == 9 or nota == 10:
-        calificación.append("Sobresaliente")
+print(json.dumps(curso, indent=2))
 
 
-print(tabulate(curso, headers=["Identificador",
-      "Nombre", "Nota", "Calificación"]))
-
-
-pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N ")
+"""pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N ")
 
 while pregunta == "Y":
 
-    """Planteamiento para buscar los datos que queremos modificar"""
+    Planteamiento para buscar los datos que queremos modificar
 
     while pregunta != "N" and pregunta != "Y":
-        pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()
+        pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()"""

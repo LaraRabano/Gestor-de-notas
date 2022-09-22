@@ -1,7 +1,6 @@
-from logging import raiseExceptions
 
 
-if __name__ == '__main__':
+"""if __name__ == '__main__':
     n = int(input())
     
     y = ""
@@ -31,6 +30,15 @@ n = ""
 for i in numeros:
     if i % 2 == 0:
         n = n + str(i)
-    print(n)
+    print(n)"""
     
     
+alumno = {"ID": int(input("Introduce el identificador del alumno: ")),
+        "Nombre": str(input("Introduce un alumno: ")),
+        "Nota": int(input("Introduce una nota: ")),
+        "Calificación": None}
+
+print(alumno)
+
+
+

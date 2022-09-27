@@ -1,13 +1,14 @@
-numeros=[1, 2, 3, 4, 5, 6]
+# numeros=[1, 2, 3, 4, 5, 6]
 
-n = ""
+# n = ""
 
-for i in numeros:
-    if i % 2 != 0:
-        continue
-    
-    else:
-        n = n + str(i)
+# for i in numeros:
+#     if i % 2 != 0:
+#         continue
 
-print(n)
+#     else:
+#         n = n + str(i)
+
+# print(n)
+
 

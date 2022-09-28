@@ -11,10 +11,7 @@ Entrada: [8, 4, 2, 9, 6, 7, 5, 0]
 
 Salida: [notable, suspenso, suspenso, sobresaliente, bien, notable, aprobado, suspenso]"""
 
-
-from unicodedata import numeric
-from tabulate import tabulate
-
+#from tabulate import tabulate
 
 curso = []
 
@@ -31,7 +28,7 @@ while otra == "Y":
     # Comprobar que el nombre sólo tiene letras
 
     alumn_nombre = input("Introduce un alumno: ")
-    while not alumn_nombre.isalpha():
+    while not alumn_nombre.isalpha(): 
         alumn_nombre = input("El nombre introducido no es correcto: ")
 
     # Comprobar que las notas introducidas son correctas
@@ -39,7 +36,7 @@ while otra == "Y":
     while True:
 
         try:
-            alumn_nota = int(input("Introduce una nota: "))
+            alumn_nota = float(input("Introduce una nota: "))
         except:
             print("La nota introducida no es correcta.")
             continue
@@ -60,9 +57,12 @@ while otra == "Y":
         "Calificacion": ""
     }
 
+    # El contador genera de forma automática el ID de los alumnos por orden de ingreso
+    contador = contador + 1
+
     # Conversión de notas a calificaciones
     if alumn_nota <= 4:
-        alumno["Calificacion"] = "Suspenso"
+        alumno["Calificacion"] = "suspenso"
 
     elif alumn_nota == 5:
         alumno["Calificacion"] = "Aprobado"
@@ -79,9 +79,6 @@ while otra == "Y":
     # Los datos recogidos se añaden como diccionario a la lista "curso"
     curso.append(alumno)
 
-    # El contador genera de forma automática el ID de los alumnos por orden de ingreso
-    contador = contador + 1
-
     # Bucle para introducir más alumnos en la lista "curso"
     otra = input(
         "¿Quieres introducir otra entrada en el registro? (Y/N): ").upper()
@@ -89,15 +86,18 @@ while otra == "Y":
     while otra != "N" and otra != "Y":
         otra = input("Respuesta incorrecta. Introduce Y o N: ").upper()
 
+print(curso)
 # Impresión de la tabla con los datos de la lista
-print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
+#print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
 
 # Fin del bucle principal
 
 
 # Cambiar elementos de la tabla
 
-"""pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N ")
+pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N) ").upper()
+
+print(pregunta)
 
 while pregunta == "Y":
 
@@ -105,12 +105,10 @@ while pregunta == "Y":
 
     for alumno in curso:
 
-        print(alumno["ID"])
-
-        if id == "ID":
-            x = input(
-                "¿Qué dato quieres modificar: ID, Nombre, Nota o Calificación?: ")
-            if x == "ID":
+        if id == alumno["ID"]:
+            dato = input("¿Qué dato quieres modificar: ID, Nombre, Nota o Calificación?: ")  #Voy a tener que hacer comprobación de esto. 
+            
+            if dato == alumno["ID"]:
                 try:
 
                     alumn_id = int(
@@ -120,7 +118,7 @@ while pregunta == "Y":
                     continue
 
             elif x == "Nombre":
-                while alumn_nombre != str(input("Introduce un alumno: ")):
+                 while alumn_nombre != str(input("Introduce un alumno: ")):
                     alumn_nombre = str(
                         input("El nombre introducido no es correcto. Inténtalo de nuevo: "))
 
@@ -138,4 +136,4 @@ while pregunta == "Y":
 
             while nuevo != "N" and pregunta != "Y":
                 pregunta = input(
-                    "Respuesta incorrecta. Introduce Y o N: ").upper()"""
+                    "Respuesta incorrecta. Introduce Y o N: ").upper()

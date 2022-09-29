@@ -11,7 +11,7 @@ Entrada: [8, 4, 2, 9, 6, 7, 5, 0]
 
 Salida: [notable, suspenso, suspenso, sobresaliente, bien, notable, aprobado, suspenso]"""
 
-#from tabulate import tabulate
+# from tabulate import tabulate
 
 curso = []
 
@@ -21,6 +21,10 @@ contador = 1
 
 list_notas = []
 
+alumn_nombre = ""
+
+alumn_nota = ""
+
 # Bucle principal
 
 while otra == "Y":
@@ -28,7 +32,7 @@ while otra == "Y":
     # Comprobar que el nombre sólo tiene letras
 
     alumn_nombre = input("Introduce un alumno: ")
-    while not alumn_nombre.isalpha(): 
+    while not alumn_nombre.isalpha():
         alumn_nombre = input("El nombre introducido no es correcto: ")
 
     # Comprobar que las notas introducidas son correctas
@@ -62,7 +66,7 @@ while otra == "Y":
 
     # Conversión de notas a calificaciones
     if alumn_nota <= 4:
-        alumno["Calificacion"] = "suspenso"
+        alumno["Calificacion"] = "Suspenso"
 
     elif alumn_nota == 5:
         alumno["Calificacion"] = "Aprobado"
@@ -88,52 +92,154 @@ while otra == "Y":
 
 print(curso)
 # Impresión de la tabla con los datos de la lista
-#print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
+# print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
 
 # Fin del bucle principal
 
 
 # Cambiar elementos de la tabla
 
-pregunta = input("¿Quieres modificar algún elemento de la tabla?(Y/N) ").upper()
-
-print(pregunta)
+pregunta = input(
+    "¿Quieres modificar algún elemento de la tabla?(Y/N) ").upper()
 
 while pregunta == "Y":
 
-    id = int(input("Introduce el ID del alumno: "))
+    identificador = int(input("Introduce el ID del alumno: "))
 
+    #i = id
+
+    encontrado = False
     for alumno in curso:
 
-        if id == alumno["ID"]:
-            dato = input("¿Qué dato quieres modificar: ID, Nombre, Nota o Calificación?: ")  #Voy a tener que hacer comprobación de esto. 
-            
-            if dato == alumno["ID"]:
-                try:
+        if identificador == alumno["ID"]:
+            encontrado = True
 
-                    alumn_id = int(
-                        input("Introduce el identificador del alumno: "))
+            # Voy a tener que hacer comprobación de esto.
+            dato = input("¿Qué dato quieres modificar: Nombre o Nota: ")
+
+            if dato == "Nombre":
+                alumno["Nombre"] = input("Introduce un nuevo nombre: ")
+                print(alumno)
+                while not alumn_nombre.isalpha():
+                    alumn_nombre = input(
+                        "El nombre introducido no es correcto: ")
+
+            elif dato == "Nota":
+                while True:
+                    try:
+                        alumn_nota = float(
+                            input("Introduce una nueva nota: "))
+                        alumno["Nota"] = alumn_nota
+                    except:
+                        print("La nota introducida no es correcta.")
+                        continue
+
+                    if alumn_nota < 0 or alumn_nota > 10:
+                        print("La nota introducida no es correcta.")
+                        continue
+
+                    # Conversión de notas a calificaciones
+                    if alumn_nota <= 4:
+                        alumno["Calificacion"] = "Suspenso"
+
+                    elif alumn_nota == 5:
+                        alumno["Calificacion"] = "Aprobado"
+
+                    elif alumn_nota == 6:
+                        alumno["Calificacion"] = "Bien"
+
+                    elif alumn_nota == 7 or alumn_nota == 8:
+                        alumno["Calificacion"] = "Notable"
+
+                    elif alumn_nota == 9 or alumn_nota == 10:
+                        alumno["Calificacion"] = "Sobresaliente"
+
+                    break
+
+    if encontrado == False:
+        nuevo = str(input(
+            "El ID introducido no corresponde con ningún alumno. ¿Quieres añadir un alumno nuevo? (Y/N): ")).upper()
+
+        while nuevo == "Y":
+            # Comprobar que el nombre sólo tiene letras
+
+            alumn_nombre = input("Introduce un alumno: ")
+            while not alumn_nombre.isalpha():
+                alumn_nombre = input(
+                    "El nombre introducido no es correcto: ")
+
+            # Comprobar que las notas introducidas son correctas
+
+            while True:
+
+                try:
+                    alumn_nota = float(input("Introduce una nota: "))
                 except:
-                    print("El ID introducido no es correcto")
+                    print("La nota introducida no es correcta.")
                     continue
 
-            elif x == "Nombre":
-                 while alumn_nombre != str(input("Introduce un alumno: ")):
-                    alumn_nombre = str(
-                        input("El nombre introducido no es correcto. Inténtalo de nuevo: "))
+                if alumn_nota < 0 or alumn_nota > 10:
+                    print("La nota introducida no es correcta.")
+                    continue
+                break
 
-            elif x == "Nota":
-                while alumno["Nota"] != int(input("Introduce una nota: ")) or alumno["Nota"] < 0 and alumno["Nota"] > 10:
-                    alumno["Nota"] = int(
-                        input("El nota introducida no es correcta. Inténtalo de nuevo: "))
+            # Diccionario de cada alumno
 
-        else:
-            nuevo = str(input(
-                "El ID introducido no corresponde con ningún alumno. ¿Quieres añadir un alumno nuevo? (Y/N): ")).upper()
+            alumn_calificacion = []
 
-            while nuevo == "Y":
-                otra == "Y"
+            alumno = {
+                "ID": contador,
+                "Nombre": alumn_nombre,
+                "Nota": alumn_nota,
+                "Calificacion": ""
+            }
 
-            while nuevo != "N" and pregunta != "Y":
-                pregunta = input(
-                    "Respuesta incorrecta. Introduce Y o N: ").upper()
+            # El contador genera de forma automática el ID de los alumnos por orden de ingreso
+            contador = contador + 1
+
+            # Conversión de notas a calificaciones
+            if alumn_nota <= 4:
+                alumno["Calificacion"] = "Suspenso"
+
+            elif alumn_nota == 5:
+                alumno["Calificacion"] = "Aprobado"
+
+            elif alumn_nota == 6:
+                alumno["Calificacion"] = "Bien"
+
+            elif alumn_nota == 7 or alumn_nota == 8:
+                alumno["Calificacion"] = "Notable"
+
+            elif alumn_nota == 9 or alumn_nota == 10:
+                alumno["Calificacion"] = "Sobresaliente"
+
+            # Los datos recogidos se añaden como diccionario a la lista "curso"
+            curso.append(alumno)
+
+            print(curso)
+            # Impresión de la tabla con los datos de la lista
+            # print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
+
+    pregunta = input("¿Quieres hacer otro cambio? (Y/N): ").upper()
+    while pregunta != "N" and pregunta != "Y":
+        pregunta = input(
+            "Respuesta incorrecta. Introduce Y o N: ").upper()
+
+print(curso)
+
+
+eliminar = input(
+    "¿Quieres eliminar algún elemento de la tabla?(Y/N) ").upper()
+
+if eliminar == "Y":
+
+    identificador = int(input("Introduce el ID del alumno: "))
+
+    encontrado = False
+    for alumno in curso:
+        if identificador == alumno["ID"]:
+            encontrado = True
+            del curso[identificador - 1]
+
+
+print(curso)

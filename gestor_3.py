@@ -2,14 +2,17 @@
 curso = []
 list_notas = []
 otra = "Y"
-contador = 0
+contador = 1
+alumn_nota = None
 
-def nuevo_alumno(): #Cambiar formato nombre.
+
+def nuevo_alumno():  # Cambiar formato nombre.
     global contador
-    alumn_nombre = IntroducirNombre()
-    alumn_nota = IntroducirNota()
-    alumn_calificacion = ConversionNotas()
-    
+    global alumn_nota
+    alumn_nombre = introducir_nombre()
+    alumn_nota = introducir_nota()
+    alumn_calificacion = conversion_notas()
+
     alumno = {
         "ID": contador,
         "Nombre": alumn_nombre,
@@ -21,7 +24,7 @@ def nuevo_alumno(): #Cambiar formato nombre.
     return alumno
 
 
-def IntroducirNombre():
+def introducir_nombre():
     alumn_nombre = input("Introduce un alumno: ")
 
     while not alumn_nombre.isalpha():
@@ -30,7 +33,7 @@ def IntroducirNombre():
     return alumn_nombre
 
 
-def IntroducirNota():
+def introducir_nota():
     while True:
         try:
             alumn_nota = float(input("Introduce una nota: "))
@@ -45,11 +48,11 @@ def IntroducirNota():
     return alumn_nota
 
 
-def ConversionNotas():
+def conversion_notas():
 
     alumn_calificacion = ""
 
-    nota = IntroducirNota()
+    nota = alumn_nota
 
     if nota <= 4:
         alumn_calificacion = "Suspenso"
@@ -79,12 +82,14 @@ option = """Elige una opción:
 pregunta = input("¿Quieres hacer alguna modificación? (Y/N): ").upper()
 
 while pregunta == "Y":
+
+    print(curso)
     respuesta = int(input(option))
 
     # Añadir nuevo alumno.
     if respuesta == 1:
         while otra == "Y":
-            alumno = NuevoAlumno()
+            alumno = nuevo_alumno()
 
             # Los datos recogidos se añaden como diccionario a la lista "curso"
             curso.append(alumno)
@@ -128,7 +133,7 @@ while pregunta == "Y":
                                 print("La nota introducida no es correcta.")
                                 continue
 
-                            ConversionNotas()
+                            conversion_notas()
 
                             break
 

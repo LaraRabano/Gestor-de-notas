@@ -103,7 +103,7 @@ while pregunta == "Y":
                 otra = input("Respuesta incorrecta. Introduce Y o N: ").upper()
 
     if respuesta == 2:
-        while pregunta == "Y":
+        while True:
             identificador = int(input("Introduce el ID del alumno: "))
             encontrado = False
 
@@ -117,7 +117,6 @@ while pregunta == "Y":
                     if dato == "Nombre":
                         global alumn_nombre
                         alumn_nombre = input("Introduce un nuevo nombre: ")
-                        print(alumno)
                         while not alumn_nombre.isalpha():
                             alumn_nombre = input(
                                 "El nombre introducido no es correcto: ")
@@ -146,10 +145,7 @@ while pregunta == "Y":
                     while nuevo == "Y":
                         nuevo_alumno()
 
-        pregunta = input("¿Quieres hacer otro cambio? (Y/N): ").upper()
-        while pregunta != "N" and pregunta != "Y":
-            pregunta = input(
-                "Respuesta incorrecta. Introduce Y o N: ").upper()
+            break
 
     if respuesta == 3:
         identificador = int(input("Introduce el ID del alumno: "))
@@ -162,3 +158,10 @@ while pregunta == "Y":
 
     while pregunta != "N" and pregunta != "Y":
         pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()
+
+    print(curso)
+
+    pregunta = input("¿Quieres hacer otro cambio? (Y/N): ").upper()
+    while pregunta != "N" and pregunta != "Y":
+        pregunta = input(
+            "Respuesta incorrecta. Introduce Y o N: ").upper()

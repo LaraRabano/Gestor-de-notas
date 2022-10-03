@@ -9,6 +9,7 @@ alumn_nota = None
 def nuevo_alumno():  # Cambiar formato nombre.
     global contador
     global alumn_nota
+    global alumn_nombre
     alumn_nombre = introducir_nombre()
     alumn_nota = introducir_nota()
     alumn_calificacion = conversion_notas()
@@ -114,7 +115,8 @@ while pregunta == "Y":
                         "¿Qué dato quieres modificar: Nombre o Nota: ")
 
                     if dato == "Nombre":
-                        alumno["Nombre"] = input("Introduce un nuevo nombre: ")
+                        global alumn_nombre
+                        alumn_nombre = input("Introduce un nuevo nombre: ")
                         print(alumno)
                         while not alumn_nombre.isalpha():
                             alumn_nombre = input(
@@ -137,12 +139,12 @@ while pregunta == "Y":
 
                             break
 
-            if encontrado == False:
-                nuevo = str(input(
-                    "El ID introducido no corresponde con ningún alumno. ¿Quieres añadir un alumno nuevo? (Y/N): ")).upper()
+                if encontrado == False:
+                    nuevo = str(input(
+                        "El ID introducido no corresponde con ningún alumno. ¿Quieres añadir un alumno nuevo? (Y/N): ")).upper()
 
-                while nuevo == "Y":
-                    NuevoAlumno()
+                    while nuevo == "Y":
+                        nuevo_alumno()
 
         pregunta = input("¿Quieres hacer otro cambio? (Y/N): ").upper()
         while pregunta != "N" and pregunta != "Y":

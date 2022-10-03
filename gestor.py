@@ -106,8 +106,6 @@ while pregunta == "Y":
 
     identificador = int(input("Introduce el ID del alumno: "))
 
-    #i = id
-
     encontrado = False
     for alumno in curso:
 

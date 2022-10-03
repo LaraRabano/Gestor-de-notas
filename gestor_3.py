@@ -4,6 +4,7 @@ list_notas = []
 otra = "Y"
 contador = 1
 alumn_nota = None
+alumn_nombre = ""
 
 
 def nuevo_alumno():  # Cambiar formato nombre.
@@ -26,6 +27,7 @@ def nuevo_alumno():  # Cambiar formato nombre.
 
 
 def introducir_nombre():
+    global alumn_nombre
     alumn_nombre = input("Introduce un alumno: ")
 
     while not alumn_nombre.isalpha():
@@ -89,6 +91,7 @@ while pregunta == "Y":
 
     # Añadir nuevo alumno.
     if respuesta == 1:
+        otra = "Y"
         while otra == "Y":
             alumno = nuevo_alumno()
 
@@ -115,11 +118,12 @@ while pregunta == "Y":
                         "¿Qué dato quieres modificar: Nombre o Nota: ")
 
                     if dato == "Nombre":
-                        global alumn_nombre
                         alumn_nombre = input("Introduce un nuevo nombre: ")
                         while not alumn_nombre.isalpha():
                             alumn_nombre = input(
                                 "El nombre introducido no es correcto: ")
+
+                        alumno["Nombre"] = alumn_nombre
 
                     elif dato == "Nota":
                         while True:
@@ -134,7 +138,9 @@ while pregunta == "Y":
                                 print("La nota introducida no es correcta.")
                                 continue
 
-                            conversion_notas()
+                            alumno["Nota"] = alumn_nota
+
+                            alumno["Calificacion"] = conversion_notas()
 
                             break
 
@@ -151,10 +157,11 @@ while pregunta == "Y":
         identificador = int(input("Introduce el ID del alumno: "))
 
         encontrado = False
-        for alumno in curso:
-            if identificador == alumno["ID"]:
+        for alumno in range(len(curso)):
+            if curso[alumno]["ID"] == identificador:
                 encontrado = True
-                del curso[identificador - 1]
+                del curso[alumno]
+                break
 
     while pregunta != "N" and pregunta != "Y":
         pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()

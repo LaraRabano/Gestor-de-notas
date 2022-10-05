@@ -1,3 +1,26 @@
+from random import randint
 
-
-alumn_calificacion = ""
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)
+maquina = randint(1, 3)
+print(maquina)

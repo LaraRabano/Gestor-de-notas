@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 
 curso = []
 list_notas = []
@@ -86,7 +88,7 @@ pregunta = input("¿Quieres hacer alguna modificación? (Y/N): ").upper()
 
 while pregunta == "Y":
 
-    print(curso)
+    print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
     respuesta = int(input(option))
 
     # Añadir nuevo alumno.
@@ -110,7 +112,7 @@ while pregunta == "Y":
             identificador = int(input("Introduce el ID del alumno: "))
             encontrado = False
 
-            for alumno in curso:
+            for alumno in range(len(curso)):
                 if identificador == alumno["ID"]:
                     encontrado = True
 
@@ -166,7 +168,7 @@ while pregunta == "Y":
     while pregunta != "N" and pregunta != "Y":
         pregunta = input("Respuesta incorrecta. Introduce Y o N: ").upper()
 
-    print(curso)
+    print(tabulate(curso, headers="keys", tablefmt="fancy_grid"))
 
     pregunta = input("¿Quieres hacer otro cambio? (Y/N): ").upper()
     while pregunta != "N" and pregunta != "Y":

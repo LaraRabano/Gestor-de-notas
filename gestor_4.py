@@ -30,41 +30,39 @@ class Curso:
 
         pass
 
-    
     def introducir_datos(self):
 
-            self.alumno = {"ID": int(input("Introduce el identificador del alumno: ")),
-                      "Nombre": str(input("Introduce un alumno: ")),
-                      "Nota": int(input("Introduce una nota: ")),
-                      "Calificación": calcular_nota()}
+        self.alumno = {"ID": int(input("Introduce el identificador del alumno: ")),
+                       "Nombre": str(input("Introduce un alumno: ")),
+                       "Nota": int(input("Introduce una nota: ")),
+                       "Calificación": calcular_nota()}
 
-            self.curso.append(self.alumno)
+        self.curso.append(self.alumno)
 
-            otra = input(
-                "¿Quieres introducir otra entrada en el registro? (Y/N): ").upper()
+        otra = input(
+            "¿Quieres introducir otra entrada en el registro? (Y/N): ").upper()
 
-            while otra != "N" and otra != "Y":
-                otra = input("Respuesta incorrecta. Introduce Y o N: ").upper()
-      
-   
+        while otra != "N" and otra != "Y":
+            otra = input("Respuesta incorrecta. Introduce Y o N: ").upper()
+
     def calcular_nota(self):
-        
+
         for nota in self.alumno:
 
             if nota <= 4:
                 nota: "Suspenso"
 
             elif nota == 5:
-                nota:"Aprobado"
+                nota: "Aprobado"
 
             elif nota == 6:
-                nota:"Bien"
+                nota: "Bien"
 
             elif nota == 7 or nota == 8:
-                nota:"Notable"
+                nota: "Notable"
 
             elif nota == 9 or nota == 10:
-                nota:"Sobresaliente"
+                nota: "Sobresaliente"
 
 
 print(tabulate(self.curso, headers=["Identificador",

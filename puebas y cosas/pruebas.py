@@ -1,44 +1,26 @@
 
+import csv
+curso = []
 
-"""if __name__ == '__main__':
-    n = int(input())
-    
-    y = ""
-    
-    for x in range(1, n + 1):
-        if x != 3:
-            y = y + str(x)
-        
-        else: 
-            try:
-                raise Exception()
-            except:
-                print("Drama")
-
-                continue
+alumno = {
+    "ID": "2",
+    "Nombre": "Bea",
+    "Nota": "8",
+    "Calificacion": "Notable"
+}
 
 
-    print(y)
-
-        
-
-
-numeros=[1, 2, 3, 4, 5, 6]
-
-n = ""
-
-for i in numeros:
-    if i % 2 == 0:
-        n = n + str(i)
-    print(n)"""
-    
-    
-alumno = {"ID": int(input("Introduce el identificador del alumno: ")),
-        "Nombre": str(input("Introduce un alumno: ")),
-        "Nota": int(input("Introduce una nota: ")),
-        "Calificación": None}
-
-print(alumno)
+with open('3b.csv', 'a') as tercero_b:
+    fieldnames = ['ID', 'Nombre', 'Nota', 'Calificacion']
+    writer = csv.DictWriter(tercero_b, fieldnames=fieldnames)
+    writer.writerow(alumno)
 
 
+with open('3b.csv', 'r') as tercero_b:
+    reader = csv.DictReader(tercero_b, fieldnames=fieldnames)
+    for row in reader:
+        alumno = row
+        curso.append(alumno)
 
+
+print(curso)
